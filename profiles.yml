@@ -3,5 +3,5 @@ motherduck_profile:
   outputs:
     dev:
       type: duckdb
-      path: "md:?motherduck_token={{ env_var('MOTHERDUCK_TOKEN') }}"
+      path: "md:trash_wheel?motherduck_token={{ env_var('MOTHERDUCK_TOKEN') }}"
       threads: 4

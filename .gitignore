@@ -1,0 +1,17 @@
+# dbt generated files
+logs/
+target/
+dbt_modules/
+dbt_packages/
+
+# Python environment files
+.venv/
+venv/
+__pycache__/
+
+# Operating System files
+.DS_Store
+
+# IDE / Environment specific files
+.vscode/
+.user.yml
