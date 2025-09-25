@@ -13,9 +13,12 @@ macro-paths: ["macros"]
 models:
   trash_wheel_dbt_project:
     materialized: view
+    ingest:
+      schema: raw
+      materialized: table
     staging:
-      schema: staging
-      materialized: view
-    marts:
-      schema: core
+      schema: stg
+      materialized: table
+    mart:
+      schema: mart
       materialized: table
