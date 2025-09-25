@@ -3,10 +3,10 @@ motherduck_profile:
   outputs:
     dev:
       type: duckdb
-      path: ':memory:' 
+      path: ':memory:'
       schema: main
       threads: 4
       # MotherDuck connection details
       hostname: "{{ env_var('MOTHERDUCK_ORGANIZATION') }}"
       token: "{{ env_var('MOTHERDUCK_TOKEN') }}" 
-      database: "{{ env_var('MOTHERDUCK_DATABASE') }}"
+      database: trash_wheel
