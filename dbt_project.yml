@@ -14,11 +14,11 @@ models:
   trash_wheel_dbt_project:
     materialized: view
     ingest:
-      schema: raw
+      # schema: raw
       materialized: table
     staging:
-      schema: stg
+      # schema: stg
       materialized: table
     mart:
-      schema: mart
+      # schema: mart
       materialized: table
