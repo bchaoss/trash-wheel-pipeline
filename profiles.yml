@@ -1,0 +1,12 @@
+motherduck_profile:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ':memory:' 
+      schema: main
+      threads: 4
+      # MotherDuck connection details
+      hostname: "{{ env_var('MOTHERDUCK_ORGANIZATION') }}"
+      token: "{{ env_var('MOTHERDUCK_TOKEN') }}" 
+      database: "{{ env_var('MOTHERDUCK_DATABASE') }}"
