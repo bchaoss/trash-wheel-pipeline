@@ -1,0 +1,21 @@
+name: 'trash_wheel_dbt_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'motherduck_profile'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+
+models:
+  trash_wheel_dbt_project:
+    materialized: view
+    staging:
+      schema: staging
+      materialized: view
+    marts:
+      schema: core
+      materialized: table
