@@ -6,5 +6,8 @@ SELECT
   , weight_tons AS weight
   , volume_cubic_yards AS volume
   , a.* EXCLUDE (dumpster, filename, _month, _year, date, weight_tons, volume_cubic_yards)
-from {{ ref('ingest_trash_wheel') }} a
-  left join main.files_to_read b on a.filename=b.csv_link
+FROM 
+  {{ ref('ingest_trash_wheel') }} a
+LEFT JOIN 
+  main.files_to_read b 
+  ON a.filename = b.csv_link
