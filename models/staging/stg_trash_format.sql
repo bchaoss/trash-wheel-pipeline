@@ -1,7 +1,7 @@
 SELECT 
   CONCAT(SUBSTRING(b.sheet_name, 1, 1), dumpster) AS dumpster_id
-  , CASE WHEN CAST(date AS VARCHAR) LIKE '00%'
-         THEN CAST(CONCAT('20', SUBSTRING(CAST(date AS VARCHAR), 3)) AS DATE)
+  , CASE 
+      WHEN CAST(date AS VARCHAR) LIKE '00%' THEN CAST(CONCAT('20', SUBSTRING(CAST(date AS VARCHAR), 3)) AS DATE)
     ELSE date END AS date
   , weight_tons AS weight
   , volume_cubic_yards AS volume
