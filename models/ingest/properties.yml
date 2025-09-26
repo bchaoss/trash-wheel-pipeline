@@ -1,0 +1,6 @@
+# ingest properties
+version: 2
+
+models:
+  - name: ingest_trash_wheel_metadata 
+    description: combined metadata ingested from google sheet links

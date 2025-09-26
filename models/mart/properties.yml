@@ -1,0 +1,37 @@
+# mart properties
+version: 2
+
+models:
+  - name: fact_trash_collection 
+    description: fact of trach wheel collections data
+    columns:
+      - name: dumpster_id
+        description: Primary key of each trash dumpster
+        tests:
+          - unique
+          - not_null
+      - name: wheel_id
+        description: Id of the trash wheel
+      - name: weight
+        description: Weight in tons
+      - name: volume
+        description: Volume in cubic yards
+      - name: plastic_bottles
+        description: Number of plastic bottles
+      - name: polystyrene
+        description: Number of polystyrene items
+      - name: cigarette_butts
+        description: Number of cigarette butts
+      - name: glass_bottles
+        description: Number of glass bottles
+      - name: plastic_bags
+        description: Number of plastic bags
+      - name: wrappers
+        description: Number of wrappers
+      - name: sports_balls
+        description: Number of sports balls
+      - name: homes_powered
+        description: >
+          The number of average households that can be powered by the energy generated from the collected trash. 
+          Calculated as: (Weight in tons * 500 kWh/ton) / (30 kWh/household/day).
+
