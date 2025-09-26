@@ -1,6 +1,6 @@
 SELECT 
-  CONCAT(SUBSTRING(b.sheet_name, 1, 1), dumpster) AS dumpster_id
-  , SUBSTRING(b.sheet_name, 1, 1) AS wheel_id
+  CONCAT(b.wheel_id, dumpster) AS dumpster_id
+  , b.wheel_id
   , CASE 
       WHEN CAST(date AS VARCHAR) LIKE '00%' THEN CAST(CONCAT('20', SUBSTRING(CAST(date AS VARCHAR), 3)) AS DATE)
     ELSE date END AS date
@@ -10,5 +10,5 @@ SELECT
 FROM 
   {{ ref('ingest_trash_wheel_metadata') }} a
 LEFT JOIN 
-  main.files_to_read b 
-  ON a.filename = b.csv_link
+  {{ ref('dim_trash_wheel') }} b
+  ON a.filename = b.source_csv_link

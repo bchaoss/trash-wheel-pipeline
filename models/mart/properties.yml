@@ -35,3 +35,18 @@ models:
           The number of average households that can be powered by the energy generated from the collected trash. 
           Calculated as: (Weight in tons * 500 kWh/ton) / (30 kWh/household/day).
 
+  - name: dim_trash_wheel
+    description: info dim table of trash wheels (maintained by seed csv)
+    columns:
+      - name: wheel_id
+        description: Primary key of each trash wheel, the first letter of name
+        tests:
+          - unique
+          - not_null
+      - name: source_google_sheet_id
+        description: data source, google sheet id (gid)
+      - name: source_csv_link
+        description: data source link, output to csv for ingest
+        tests:
+          - unique
+          - not_null
