@@ -2,9 +2,9 @@
     -- Execute a query to get the list of links as a string array
     {% set query %}
         SELECT
-            list(csv_link)
+            LIST(source_csv_link)
         FROM
-            main.files_to_read
+            {{ ref('dim_trash_wheel') }}
     {% endset %}
 
     {% set results = run_query(query) %}

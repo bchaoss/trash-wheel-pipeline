@@ -18,3 +18,10 @@ models:
       materialized: view
     mart:
       materialized: table
+
+seeds:
+  trash_wheel_info:
+    +quote_columns: false
+
+vars:
+  source_google_sheet_link: "https://docs.google.com/spreadsheets/d/1b8Lbe-z3PNb3H8nSsSjrwK2B0ReAblL2"
