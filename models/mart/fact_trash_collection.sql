@@ -1,6 +1,9 @@
 SELECT
   dumpster_id
+  , wheel_id
   , date
+  , year(date) AS month
+  , month(date) AS month
   , weight
   , volume
   , plastic_bottles

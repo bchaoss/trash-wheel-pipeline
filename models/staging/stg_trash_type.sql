@@ -13,6 +13,7 @@
 
 SELECT
     dumpster_id
+    , wheel_id
     , date
     {% for col in numeric_cols_to_cast %}
     , CAST(REPLACE(REPLACE({{ col }}, ' ', ''), ',', '') AS DECIMAL) AS {{ col }}

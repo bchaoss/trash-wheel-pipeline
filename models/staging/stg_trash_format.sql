@@ -1,5 +1,6 @@
 SELECT 
   CONCAT(SUBSTRING(b.sheet_name, 1, 1), dumpster) AS dumpster_id
+  , SUBSTRING(b.sheet_name, 1, 1) AS wheel_id
   , CASE 
       WHEN CAST(date AS VARCHAR) LIKE '00%' THEN CAST(CONCAT('20', SUBSTRING(CAST(date AS VARCHAR), 3)) AS DATE)
     ELSE date END AS date
