@@ -17,7 +17,7 @@ SELECT
     , date
     {% for col in numeric_cols_to_cast %}
     , CAST(REPLACE(REPLACE({{ col }}, ' ', ''), ',', '') AS DECIMAL) AS {{ col }}
-    {% if not loop.last %}, {% endif %}
+    -- {% if not loop.last %}, {% endif %}
     {% endfor %}
 FROM
     {{ ref('stg_trash_unique') }}

@@ -2,7 +2,7 @@ SELECT
   dumpster_id
   , wheel_id
   , date
-  , year(date) AS month
+  , year(date) AS year
   , month(date) AS month
   , weight
   , volume
