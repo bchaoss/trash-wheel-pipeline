@@ -8,6 +8,6 @@ Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfordatas
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
 
 TBD:
-- [ ] test and run
+- [x] test and build dbt
 - [ ] mart analysis table
 - [ ] incremental (ingest or refresh)
