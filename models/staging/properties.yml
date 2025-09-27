@@ -3,7 +3,10 @@ version: 2
 
 models:
   - name: stg_trash_format 
-    description: format date, primary key and name of columns
+    description: format date and name of columns
+
+  - name: stg_trash_unique
+    description: create clean and unique primary key
     columns:
       - name: dumpster_id
         description: Primary key of each trash dumpster
@@ -13,12 +16,6 @@ models:
 
   - name: stg_trash_type
     description: cast columns to right data type
-
-  - name: stg_trash_clean
-    description: cleaned table, with calculated homes_powered column
-    columns:
-      - name: homes_powered
-        description: Each ton of trash equates to on average 500 kilowatts of electricity. An average household will use 30 kilowatts per day.
 
   - name: config_trash_wheel
     description: config info table of trash wheels (maintained by seed csv)

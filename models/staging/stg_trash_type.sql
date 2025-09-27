@@ -20,4 +20,4 @@ SELECT
     {% if not loop.last %}, {% endif %}
     {% endfor %}
 FROM
-    {{ ref('stg_trash_format') }}
+    {{ ref('stg_trash_unique') }}

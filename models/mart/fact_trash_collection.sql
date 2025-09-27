@@ -13,6 +13,6 @@ SELECT
   , plastic_bags
   , wrappers
   , sports_balls
-  , homes_powered
+  , (CAST(weight AS DECIMAL) * 500 / 30) AS homes_powered
 FROM 
-  {{ ref('stg_trash_clean') }}
+  {{ ref('stg_trash_type') }}
