@@ -2,5 +2,5 @@
 version: 2
 
 models:
-  - name: ingest_trash_wheel_metadata 
-    description: combined metadata ingested from google sheet links
+  - name: ingest_trash_wheel
+    description: combined raw data ingested from google sheet links

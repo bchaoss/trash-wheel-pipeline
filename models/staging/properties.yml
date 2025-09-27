@@ -20,3 +20,18 @@ models:
       - name: homes_powered
         description: Each ton of trash equates to on average 500 kilowatts of electricity. An average household will use 30 kilowatts per day.
 
+  - name: config_trash_wheel
+    description: config info table of trash wheels (maintained by seed csv)
+    columns:
+      - name: wheel_id
+        description: Primary key of each trash wheel, the first letter of name
+        tests:
+          - unique
+          - not_null
+      - name: source_google_sheet_id
+        description: data source, google sheet id (gid)
+        tests:
+          - unique
+          - not_null
+      - name: source_csv_link
+        description: data source link, output to csv for ingest
