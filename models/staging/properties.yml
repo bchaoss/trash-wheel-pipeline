@@ -28,6 +28,10 @@ models:
         tests:
           - unique
           - not_null
+      - name: trash_wheel_name
+        tests:
+          - unique
+          - not_null
       - name: source_google_sheet_id
         description: data source, google sheet id (gid)
         tests:
