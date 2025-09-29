@@ -9,6 +9,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -40,8 +45,6 @@ jobs:
         run: |
           mkdir -p ${{ env.DBT_PROJECT_DIR }}/.dbt
           cp ${{ env.DBT_PROJECT_DIR }}/profiles.yml ${{ env.DBT_PROFILES_DIR }}/profiles.yml
-          
-          # echo "DBT_PROFILES_DIR=$GITHUB_WORKSPACE/dbt_pipeline/.dbt" >> $GITHUB_ENV
         shell: bash
   
       # - name: Run dbt deps
@@ -51,3 +54,20 @@ jobs:
       - name: Run dbt test
         run: dbt test
         working-directory: ${{ env.DBT_PROJECT_DIR }}
+
+      - name: Generate dbt doc
+        run: dbt docs generate
+        working-directory: ${{ env.DBT_PROJECT_DIR }}
+        
+      # Github Page deploy
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload documentation artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.DBT_PROJECT_DIR }}/target/
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
