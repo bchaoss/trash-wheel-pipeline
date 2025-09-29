@@ -14,6 +14,6 @@ SELECT
   , wrappers
   , sports_balls
   , (CAST(weight AS DECIMAL) * 500 / 30) AS homes_powered
-  , current_date() AS updated_time
+  , load_time
 FROM 
   {{ ref('stg_trash_type') }}
