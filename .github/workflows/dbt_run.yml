@@ -16,9 +16,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    env:
-      DBT_PROJECT_ROOT: /root/dbt_pipeline
-      DBT_PROFILES_PATH: /root/dbt_pipeline/.dbt/profiles.yml
+    # env:
+    #   DBT_PROJECT_ROOT: /root/dbt_pipeline
+    #   DBT_PROFILES_PATH: /root/dbt_pipeline/.dbt/profiles.yml
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -37,10 +37,10 @@ jobs:
       - name: Set up dbt profiles
         # "initializeCommand": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/"
         run: |
-          mkdir -p ${{ env.DBT_PROJECT_ROOT }}/.dbt
-          cp ${{ env.DBT_PROJECT_ROOT }}/profiles.yml ${{ env.DBT_PROFILES_PATH }}
+          mkdir -p $GITHUB_WORKSPACE/dbt_pipeline/.dbt
+          cp $GITHUB_WORKSPACE/dbt_pipeline/profiles.yml $GITHUB_WORKSPACE/dbt_pipeline/.dbt/profiles.yml
           
-          echo "DBT_PROFILES_DIR=$(dirname ${{ env.DBT_PROFILES_PATH }})" >> $GITHUB_ENV
+          echo "DBT_PROFILES_DIR=$GITHUB_WORKSPACE/dbt_pipeline/.dbt" >> $GITHUB_ENV
           echo "DBT_PROJECT_DIR=dbt_pipeline" >> $GITHUB_ENV
         shell: bash
   
@@ -49,6 +49,5 @@ jobs:
         working-directory: ${{ env.DBT_PROJECT_DIR }}
   
       - name: Run dbt test
-        # 运行 dbt 测试命令
         run: dbt test
         working-directory: ${{ env.DBT_PROJECT_DIR }}
