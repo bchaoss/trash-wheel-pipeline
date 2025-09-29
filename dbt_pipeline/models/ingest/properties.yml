@@ -6,7 +6,7 @@ models:
     description: combined raw data ingested from google sheet links
     columns:
       - name: load_time
-        description: date of data be loaded
+        description: timestamp when data be loaded
       - name: filename
-        description: csv link as filename from read_csv_auto
+        description: csv link as filename (from read_csv_auto)
       
