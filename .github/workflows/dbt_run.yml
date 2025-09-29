@@ -18,8 +18,8 @@ jobs:
 
     env:
       MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
-      DBT_PROJECT_ROOT: ${{ github.workspace }}/dbt_pipeline
-      DBT_PROFILES_PATH: ${{ github.workspace }}/dbt_pipeline/.dbt
+      DBT_PROJECT_DIR: ${{ github.workspace }}/dbt_pipeline
+      DBT_PROFILES_DIR: ${{ github.workspace }}/dbt_pipeline/.dbt
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,11 +38,10 @@ jobs:
       - name: Set up dbt profiles
         # "initializeCommand": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/"
         run: |
-          mkdir -p $GITHUB_WORKSPACE/dbt_pipeline/.dbt
-          cp $GITHUB_WORKSPACE/dbt_pipeline/profiles.yml $GITHUB_WORKSPACE/dbt_pipeline/.dbt/profiles.yml
+          mkdir -p ${{ env.DBT_PROJECT_DIR }}/.dbt
+          cp ${{ env.DBT_PROJECT_DIR }}/profiles.yml ${{ env.DBT_PROFILES_DIR }}/profiles.yml
           
-          echo "DBT_PROFILES_DIR=$GITHUB_WORKSPACE/dbt_pipeline/.dbt" >> $GITHUB_ENV
-          echo "DBT_PROJECT_DIR=$GITHUB_WORKSPACE/dbt_pipeline" >> $GITHUB_ENV
+          # echo "DBT_PROFILES_DIR=$GITHUB_WORKSPACE/dbt_pipeline/.dbt" >> $GITHUB_ENV
         shell: bash
   
       # - name: Run dbt deps
