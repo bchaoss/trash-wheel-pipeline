@@ -18,8 +18,8 @@ jobs:
 
     env:
       MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
-      DBT_PROJECT_ROOT: $GITHUB_WORKSPACE/dbt_pipeline
-    #   DBT_PROFILES_PATH: /root/dbt_pipeline/.dbt/profiles.yml
+      DBT_PROJECT_ROOT: ${{ github.workspace }}/dbt_pipeline
+      DBT_PROFILES_PATH: ${{ github.workspace }}/dbt_pipeline/.dbt
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -45,9 +45,9 @@ jobs:
           echo "DBT_PROJECT_DIR=$GITHUB_WORKSPACE/dbt_pipeline" >> $GITHUB_ENV
         shell: bash
   
-      - name: Run dbt deps
-        run: dbt deps
-        working-directory: ${{ env.DBT_PROJECT_DIR }}
+      # - name: Run dbt deps
+      #   run: dbt deps
+      #   working-directory: ${{ env.DBT_PROJECT_DIR }}
   
       - name: Run dbt test
         run: dbt test
