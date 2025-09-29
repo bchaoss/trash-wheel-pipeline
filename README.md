@@ -1,12 +1,26 @@
 # trash-wheel-analysis
-data pipeline for analyzing trash wheel collection data
+A data pipeline for analyzing trash wheel collection data.
 
-*Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
+Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
 
 [![DBT](https://img.shields.io/badge/DBT-orange?style=for-the-badge&logo=dbt)](https://www.getdbt.com/)
 [![DuckDB](https://img.shields.io/badge/DuckDB-yellow?style=for-the-badge&logo=duckdb)](https://duckdb.org/)
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
 
+<br>
+
+### Data Stack
+
+| Stack | Purpose (Modern & Open-source) |
+| :--- | :--- |
+| [dbt](https://www.getdbt.com/) | Generate data transformation pipeline (models, documentation, and tests) in SQL |
+| [DuckDB](https://duckdb.org/) | Analytical database engine |
+| [MotherDuck](https://www.motherduck.com/) | Cloud deployment for DuckDB (free plan available) |
+| [Evidence](https://github.com/evidence-dev/evidence?tab=readme-ov-file) | BI tool using SQL and Markdown |
+| [Github Action](https://docs.github.com/en/actions/get-started/understand-github-actions) | CI/CD (to run pipeline, deploy docs to [GitHub Page](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)) |
+
+
+### Structure
 <pre>
 .
 ├── dbt_pipeline/
@@ -25,8 +39,43 @@ data pipeline for analyzing trash wheel collection data
 ├── .github/workflows
 └── requirements.txt
 </pre>
-  
-TBD:
+
+### DAG
+
+<img width="2355" height="431" alt="dbt-dag" src="https://github.com/user-attachments/assets/0c0a2468-effd-4a65-97bf-c6aa5184b632" />
+
+
+<br>
+<br>
+
+
+###  Quickstart
+
+0\. Clone the Repo
+
+1\. Get MotherDuck Access and set Environment Variable `MOTHERDUCK_TOKEN`
+
+2\. Setup Environment
+
+| Option | Notes |
+| :--- | :--- |
+| **Local Machine** | Python 3 and `pip install -r requirements.txt` | 
+| **Github Codespace** | Uses the `.devcontainer` to set up |
+
+3\. Run the dbt Pipeline
+
+```bash
+cd dbt_pipeline
+
+dbt debug  # Verify connection
+
+dbt build  # Run the full pipeline (ingest -> staging -> mart) and tests
+```
+
+<br>
+
+### TBD:
 - [x] test and build dbt
 - [ ] mart analysis table
 - [ ] incremental (ingest or refresh)
+- [x] github action
