@@ -16,8 +16,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # env:
-    #   DBT_PROJECT_ROOT: /root/dbt_pipeline
+    env:
+      MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
+      DBT_PROJECT_ROOT: $GITHUB_WORKSPACE/dbt_pipeline
     #   DBT_PROFILES_PATH: /root/dbt_pipeline/.dbt/profiles.yml
 
     # Steps represent a sequence of tasks that will be executed as part of the job
