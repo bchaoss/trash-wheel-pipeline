@@ -19,5 +19,6 @@ SELECT
     , CAST(REPLACE(REPLACE({{ col }}, ' ', ''), ',', '') AS DECIMAL) AS {{ col }}
     -- {% if not loop.last %}, {% endif %}
     {% endfor %}
+    , load_time
 FROM
     {{ ref('stg_trash_unique') }}

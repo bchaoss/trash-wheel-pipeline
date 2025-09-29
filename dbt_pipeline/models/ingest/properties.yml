@@ -4,3 +4,9 @@ version: 2
 models:
   - name: ingest_trash_wheel
     description: combined raw data ingested from google sheet links
+    columns:
+      - name: load_time
+        description: date of data be loaded
+      - name: filename
+        description: csv link as filename from read_csv_auto
+      
