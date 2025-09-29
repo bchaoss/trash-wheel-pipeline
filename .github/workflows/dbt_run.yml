@@ -1,0 +1,54 @@
+name: dbt_run
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  dbt_run:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    env:
+      DBT_PROJECT_ROOT: /root/dbt_pipeline
+      DBT_PROFILES_PATH: /root/dbt_pipeline/.dbt/profiles.yml
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+        
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+  
+      - name: Set up dbt profiles
+        # "initializeCommand": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/"
+        run: |
+          mkdir -p ${{ env.DBT_PROJECT_ROOT }}/.dbt
+          cp ${{ env.DBT_PROJECT_ROOT }}/profiles.yml ${{ env.DBT_PROFILES_PATH }}
+          
+          echo "DBT_PROFILES_DIR=$(dirname ${{ env.DBT_PROFILES_PATH }})" >> $GITHUB_ENV
+          echo "DBT_PROJECT_DIR=dbt_pipeline" >> $GITHUB_ENV
+        shell: bash
+  
+      - name: Run dbt deps
+        run: dbt deps
+        working-directory: ${{ env.DBT_PROJECT_DIR }}
+  
+      - name: Run dbt test
+        # 运行 dbt 测试命令
+        run: dbt test
+        working-directory: ${{ env.DBT_PROJECT_DIR }}
