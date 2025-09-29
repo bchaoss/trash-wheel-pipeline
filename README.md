@@ -40,7 +40,9 @@ Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfor
 └── requirements.txt
 </pre>
 
-### DAG
+### Docs & DAG
+
+**[dbt docs](https://bchaoss.github.io/trash-wheel-pipeline/#!/overview)** : shows SQL models info and structure.
 
 <img width="2355" height="431" alt="dbt-dag" src="https://github.com/user-attachments/assets/0c0a2468-effd-4a65-97bf-c6aa5184b632" />
 
@@ -49,11 +51,11 @@ Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfor
 <br>
 
 
-###  Quickstart
+###  Get start
 
 0\. Clone the Repo
 
-1\. Get MotherDuck Access and set Environment Variable `MOTHERDUCK_TOKEN`
+1\. Create MotherDuck account and set environment variable `MOTHERDUCK_TOKEN`
 
 2\. Setup Environment
 
