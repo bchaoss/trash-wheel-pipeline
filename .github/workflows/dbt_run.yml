@@ -41,7 +41,7 @@ jobs:
           cp $GITHUB_WORKSPACE/dbt_pipeline/profiles.yml $GITHUB_WORKSPACE/dbt_pipeline/.dbt/profiles.yml
           
           echo "DBT_PROFILES_DIR=$GITHUB_WORKSPACE/dbt_pipeline/.dbt" >> $GITHUB_ENV
-          echo "DBT_PROJECT_DIR=dbt_pipeline" >> $GITHUB_ENV
+          echo "DBT_PROJECT_DIR=$GITHUB_WORKSPACE/dbt_pipeline" >> $GITHUB_ENV
         shell: bash
   
       - name: Run dbt deps
