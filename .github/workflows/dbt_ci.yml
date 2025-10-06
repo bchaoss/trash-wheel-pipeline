@@ -58,8 +58,13 @@ jobs:
         run: dbt run
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
+      - name: dir docs dir
+        run: |
+          mkdir -p ${{ github.workspace }}/docs/pipeline
+          mkdir -p ${{ github.workspace }}/docs/dashboard
+
       - name: Generate dbt doc
-        run: dbt docs generate
+        run: dbt docs generate --target-path ${{ github.workspace }}/docs/pipeline
         working-directory: ${{ env.DBT_PROJECT_DIR }}
         
       # Github Page deploy
@@ -69,7 +74,7 @@ jobs:
       - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.DBT_PROJECT_DIR }}/target/
+          path: ${{ github.workspace }}/docs
       
       - name: Deploy docs to GitHub Pages
         id: deployment
