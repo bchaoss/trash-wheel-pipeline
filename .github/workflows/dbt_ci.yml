@@ -1,5 +1,10 @@
 name: dbt_ci
 
+env:
+  MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
+  DBT_PROJECT_DIR: ${{ github.workspace }}/dbt_pipeline
+  DBT_PROFILES_DIR: ${{ github.workspace }}/dbt_pipeline/.dbt
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -16,15 +21,9 @@ permissions:
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  dbt_ci:
+  setup:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    env:
-      MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
-      DBT_PROJECT_DIR: ${{ github.workspace }}/dbt_pipeline
-      DBT_PROFILES_DIR: ${{ github.workspace }}/dbt_pipeline/.dbt
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -36,7 +35,7 @@ jobs:
         with:
           python-version: '3.11'
         
-      - name: Install dependencies
+      - name: Install dbt dependencies
         run: pip install -r requirements.txt
   
       - name: Set up dbt profiles
@@ -45,7 +44,11 @@ jobs:
           mkdir -p ${{ env.DBT_PROJECT_DIR }}/.dbt
           cp ${{ env.DBT_PROJECT_DIR }}/profiles.yml ${{ env.DBT_PROFILES_DIR }}/profiles.yml
         shell: bash
-  
+
+  run-dbt:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       # - name: Run dbt deps
       #   run: dbt deps
       #   working-directory: ${{ env.DBT_PROJECT_DIR }}
@@ -58,7 +61,11 @@ jobs:
         run: dbt run
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
-      - name: dir docs dir
+  doc-dbt:
+    needs: run-dbt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create docs dir
         run: |
           mkdir -p ${{ github.workspace }}/docs/pipeline
           mkdir -p ${{ github.workspace }}/docs/dashboard
@@ -66,7 +73,11 @@ jobs:
       - name: Generate dbt doc
         run: dbt docs generate --target-path ${{ github.workspace }}/docs/pipeline
         working-directory: ${{ env.DBT_PROJECT_DIR }}
-        
+
+  deploy-page:
+    needs: doc-dbt
+    runs-on: ubuntu-latest
+    steps:     
       # Github Page deploy
       - name: Setup Pages
         uses: actions/configure-pages@v5
