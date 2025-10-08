@@ -24,6 +24,6 @@ evidence_bi/.svelte-kit
 evidence_bi/build
 evidence_bi/node_modules
 evidence_bi/static/data
-# *.options.yaml
+*.options.yaml
 .vscode/settings.json
 .env

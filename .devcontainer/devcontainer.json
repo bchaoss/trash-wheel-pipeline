@@ -6,7 +6,7 @@
       "version": "3.11"
     }
   },
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "pip install -r requirements.txt && echo \"EVIDENCE_SOURCE__trash_wheel__token=${MOTHERDUCK_TOKEN}\" >> evidence_bi/.env",
   "customizations": {
     "vscode": {
       "extensions": [

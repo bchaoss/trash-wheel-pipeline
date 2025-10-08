@@ -1,0 +1,1 @@
+select * from main.trash_collection_monthly

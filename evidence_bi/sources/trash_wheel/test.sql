@@ -1,1 +1,0 @@
-SELECT * from dim_trash_wheel
