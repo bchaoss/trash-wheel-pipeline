@@ -1,13 +1,18 @@
 # trash-wheel-analysis
-A data pipeline for analyzing trash wheel collection data.
+**A data pipeline & dashboard for analyzing trash wheel collection data.**
 
 Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
+
+<img width="1842" height="370" alt="diagram-export-10-9-2025-4_17_41-AM-overlay" src="https://github.com/user-attachments/assets/7a1dab3a-9baa-463b-885f-11acc5236c4e" />
+
+<!-- <br> -->
 
 [![DBT](https://img.shields.io/badge/DBT-orange?style=for-the-badge&logo=dbt)](https://www.getdbt.com/)
 [![DuckDB](https://img.shields.io/badge/DuckDB-yellow?style=for-the-badge&logo=duckdb)](https://duckdb.org/)
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
+[![Evidence](https://img.shields.io/badge/evidence-grey?style=for-the-badge&logo=evidence)]([https://www.motherduck.com/](https://github.com/evidence-dev/evidence))
 
-<br>
+
 
 ### Data Stack
 
@@ -34,6 +39,9 @@ Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfor
 │   └── profiles.yml
 │
 ├── evidence_BI/
+│   ├── pages/
+│   ├── sources/
+│   └── etc.
 │
 ├── .devcontainer/
 ├── .github/workflows
