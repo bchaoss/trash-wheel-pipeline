@@ -67,3 +67,5 @@ exposures:
 
     depends_on:
       - ref('trash_collection_monthly')
+    owner:
+      name: Pubilc
