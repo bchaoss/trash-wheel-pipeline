@@ -1,12 +1,19 @@
 {
-  "name": "dbt MotherDuck Project",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "name": "Node + Python Feature",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
+  },
   "postCreateCommand": "pip install -r requirements.txt",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "innoverio.vscode-dbt-power-user"
+        "innoverio.vscode-dbt-power-user",
+        "evidence.evidence-vscode",
+        "svelte.svelte-vscode"
       ]
     }
   },

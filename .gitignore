@@ -15,3 +15,15 @@ __pycache__/
 # IDE / Environment specific files
 .vscode/
 .user.yml
+
+
+# evidence bi ignore
+.evidence/template
+.svelte-kit
+build
+node_modules
+static/data
+*.options.yaml
+.vscode/settings.json
+.env
+.evidence/meta
