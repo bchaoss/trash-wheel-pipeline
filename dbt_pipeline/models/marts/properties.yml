@@ -1,4 +1,4 @@
-# mart properties
+# marts properties
 version: 2
 
 models:
@@ -45,3 +45,25 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: trash_collection_monthly
+    description: monthly agg data of trach wheel collections
+    columns:
+      - name: num_dumpster
+        description: Count number of dumpsters monthly
+      - name: season
+        description: Seasons of Baltimore (12~2 for Winter; 3~5 for Spring; 6~8 for Summer; 9~11 for Fall) 
+
+
+exposures:
+
+  - name: trash_wheel_dashboard
+    label: Trash Wheel Collections Dashboard
+    type: dashboard
+    # maturity: high
+    # url: https://bi.tool/dashboards/1
+    description: >
+      Did someone say "exponential growth"?
+
+    depends_on:
+      - ref('trash_collection_monthly')
