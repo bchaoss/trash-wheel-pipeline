@@ -50,7 +50,7 @@ Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfor
 
 ### Docs & DAG
 
-**[dbt docs](https://bchaoss.github.io/trash-wheel-pipeline/pipeline/)** : shows SQL models info and structure.
+**[dbt docs](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview)** : shows SQL models info and structure.
 
 <img width="2355" height="431" alt="dbt-dag" src="https://github.com/user-attachments/assets/0c0a2468-effd-4a65-97bf-c6aa5184b632" />
 
