@@ -18,12 +18,12 @@ __pycache__/
 
 
 # evidence bi ignore
-.evidence/template
-.svelte-kit
-build
-node_modules
-static/data
-*.options.yaml
+evidence_bi/.evidence/template
+evidence_bi/.evidence/meta
+evidence_bi/.svelte-kit
+evidence_bi/build
+evidence_bi/node_modules
+evidence_bi/static/data
+# *.options.yaml
 .vscode/settings.json
 .env
-.evidence/meta
