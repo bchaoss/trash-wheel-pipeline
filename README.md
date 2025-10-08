@@ -10,7 +10,7 @@ Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfor
 [![DBT](https://img.shields.io/badge/DBT-orange?style=for-the-badge&logo=dbt)](https://www.getdbt.com/)
 [![DuckDB](https://img.shields.io/badge/DuckDB-yellow?style=for-the-badge&logo=duckdb)](https://duckdb.org/)
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
-[![Evidence](https://img.shields.io/badge/evidence-grey?style=for-the-badge&logo=evidence)]([https://www.motherduck.com/](https://github.com/evidence-dev/evidence))
+[![Evidence](https://img.shields.io/badge/evidence-grey?style=for-the-badge&logo=evidence)](https://github.com/evidence-dev/evidence)
 
 
 
