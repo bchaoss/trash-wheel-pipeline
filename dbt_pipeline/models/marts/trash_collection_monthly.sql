@@ -20,7 +20,7 @@ from (
     wheel_id
     , year
     , month
-    , date
+    , DATE_TRUNC('month', date)::DATE as date
     , case when month in (12, 1, 2) then 'Winter'
            when month in (3, 4, 5) then 'Spring'
            when month in (6, 7, 8) then 'Summer'
