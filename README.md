@@ -1,5 +1,5 @@
 # trash-wheel-analysis
-**A [data pipeline](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview) & dashboard for analyzing trash wheel collection data.**
+**A [data pipeline](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview) & dashboard(to deploy) for analyzing trash wheel collection data.**
 
 Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbor](https://www.mrtrashwheel.com/)
 
