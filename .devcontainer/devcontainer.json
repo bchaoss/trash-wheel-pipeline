@@ -17,5 +17,5 @@
       ]
     }
   },
-  "initializeCommand": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/"
+  "initializeCommand": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/ && cd evidence_bi/ && npm install && npm run sources"
 }
