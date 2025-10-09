@@ -1,5 +1,5 @@
 # trash-wheel-analysis
-**A data pipeline & dashboard for analyzing trash wheel collection data.**
+**A [data pipeline](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview) & dashboard for analyzing trash wheel collection data.**
 
 Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
 
@@ -87,6 +87,7 @@ dbt build  # Run the full pipeline (ingest -> staging -> mart) and tests
 
 ### TBD:
 - [x] test and build dbt
-- [ ] mart analysis table
+- [x] mart analysis table
 - [ ] incremental (ingest or refresh)
 - [x] github action
+- [ ] dashboard deploy
