@@ -1,60 +1,147 @@
 ---
-title: Welcome to Evidence
+title: Dashboard - Trash Wheels' Collection
 ---
 
-```sql test
-select * from trash_wheel.test
+```sql lastest_month
+select 
+  max(date) as month
+  , max(load_time) as load_time
+from trash_collection_monthly
 ```
 
-<Details title='How to edit this page'>
+## How Many Trash Collected by the Trash Wheel ?
 
-  This page can be found in your project at `/pages/index.md`. Make a change to the markdown file and save it to see the change take effect in your browser.
-</Details>
+(Data last updated on <Value
+    data={lastest_month}
+    value="load_time"
+/>; Latest active month of trash wheel is <Value
+    data={lastest_month}
+    value="month"
+/>)
 
-```sql categories
-  select
-      category
-  from needful_things.orders
-  group by category
+```sql last_month_sum
+select 
+  sum(weight) as weight
+  , sum(volume) as volume
+from trash_collection_monthly
+where date >= (select month from ${lastest_month} )
 ```
 
-<Dropdown data={categories} name=category value=category>
-    <DropdownOption value="%" valueLabel="All Categories"/>
-</Dropdown>
-
-<Dropdown name=year>
-    <DropdownOption value=% valueLabel="All Years"/>
-    <DropdownOption value=2019/>
-    <DropdownOption value=2020/>
-    <DropdownOption value=2021/>
-</Dropdown>
-
-```sql orders_by_category
-  select 
-      date_trunc('month', order_datetime) as month,
-      sum(sales) as sales_usd,
-      category
-  from needful_things.orders
-  where category like '${inputs.category.value}'
-  and date_part('year', order_datetime) like '${inputs.year.value}'
-  group by all
-  order by sales_usd desc
+```sql total_sum
+select 
+  sum(weight) as weight
+  , sum(volume) as volume
+from trash_collection_monthly
 ```
 
-<BarChart
-    data={orders_by_category}
-    title="Sales by Month, {inputs.category.label}"
-    x=month
-    y=sales_usd
-    series=category
+
+<BigValue
+    title="Latest month weight"
+    data={last_month_sum}
+    value="weight"
 />
 
-## What's Next?
-- [Connect your data sources](settings)
-- Edit/add markdown files in the `pages` folder
-- Deploy your project with [Evidence Cloud](https://evidence.dev/cloud)
 
-## Get Support
-- Message us on [Slack](https://slack.evidence.dev/)
-- Read the [Docs](https://docs.evidence.dev/)
-- Open an issue on [Github](https://github.com/evidence-dev/evidence)
+<BigValue
+    title="Latest month volume"
+    data={last_month_sum}
+    value="volume"
+/>
+
+<BigValue
+    title="Total weight"
+    data={total_sum}
+    value="weight"
+/>
+
+
+<BigValue
+    title="Total volume"
+    data={total_sum}
+    value="volume"
+/>
+
+
+## Trash Collection Over Months
+<Grid cols=2>
+<LineChart
+	data={monthly_data}
+	x="Month"
+	y="weight"
+  y2="volume" 
+/>
+
+<DataTable 
+	data={latest_6month_data}
+  limit=6
+/>
+</Grid>
+
+```sql monthly_data
+select date as Month,
+  sum(weight) as weight,
+  sum(volume) as volume
+from trash_collection_monthly
+group by 1
+order by 1 desc
+```
+
+```sql latest_6month_data
+select date as Month,
+  sum(weight) as weight,
+  sum(volume) as volume
+from trash_collection_monthly
+group by 1
+order by 1 desc
+limit 6
+```
+
+## Trash Collection by Wheels in Lastest Month
+
+<Grid cols=2>
+<BarChart
+  data={by_wheel_this_month}
+	x="wheel_name"
+	y="weight"
+  order="weight desc"
+/>
+
+<BarChart
+	data={by_wheel_this_month}
+	x="wheel_name"
+	y="volume"
+  order="volume desc"
+/>
+</Grid>
+
+```sql by_wheel_this_month
+select wheel_name,
+  sum(weight) as weight,
+  sum(volume) as volume
+from trash_collection_monthly
+where date >= (select month from ${lastest_month} )
+group by 1
+order by 1 desc
+```
+
+## Is there any pattern of Trash Collection?
+
+```sql monthly_by_year
+select 
+  year
+  , season
+  , sum(weight) as weight
+  , sum(volume) as volume
+from trash_collection_monthly
+group by 1, 2
+order by 1, 2
+```
+
+<LineChart
+	data={monthly_by_year}
+	x="season"
+	y="weight"
+  series="year"
+  order="year"
+/>
+
