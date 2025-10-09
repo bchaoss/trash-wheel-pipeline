@@ -1,7 +1,7 @@
 # trash-wheel-analysis
 **A [data pipeline](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview) & dashboard for analyzing trash wheel collection data.**
 
-Data Source: [TidyTuesday | Trash Wheel Collection Data](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
+Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbor](https://www.mrtrashwheel.com/)
 
 <img width="1842" height="370" alt="diagram-export-10-9-2025-4_17_41-AM-overlay" src="https://github.com/user-attachments/assets/7a1dab3a-9baa-463b-885f-11acc5236c4e" />
 
@@ -91,3 +91,8 @@ dbt build  # Run the full pipeline (ingest -> staging -> mart) and tests
 - [ ] incremental (ingest or refresh)
 - [x] github action
 - [ ] dashboard deploy
+
+### Reference:
+- [TidyTuesday data on 2024-03-05](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
+- [How the Trash Wheel works](https://www.mrtrashwheel.com/how-it-works)
+- [Baltimore Healthy Harbor](https://www.waterfrontpartnership.org/healthy-harbor-initiative)
