@@ -85,8 +85,12 @@ jobs:
           EVIDENCE_SOURCE__trash_wheel__token: ${{ env.MOTHERDUCK_TOKEN }}
         run: |
           npm run sources
-          npm run 
+          npm run build
         working-directory: ${{ env.BI_PROJECT_DIR }}
+      
+      - name: Move build to docs folder
+        run: mv ${{ env.BI_PROJECT_DIR }}/build/* ${{ github.workspace }}/docs/dashboard
+      
 
       # Action3: Upload artifact
       - name: Upload documentation artifact
