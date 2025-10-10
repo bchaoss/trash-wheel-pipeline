@@ -74,8 +74,9 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: evidence_bi/package-lock.json
 
-      - name: Install npm
+      - name: Install npm dependencies
         run: npm install
         working-directory: ${{ env.BI_PROJECT_DIR }}
 
@@ -84,7 +85,8 @@ jobs:
           EVIDENCE_SOURCE__trash_wheel__token: ${{ env.MOTHERDUCK_TOKEN }}
         run: |
           npm run sources
-          npm run build
+          npm run 
+        working-directory: ${{ env.BI_PROJECT_DIR }}
 
       # Action3: Upload artifact
       - name: Upload documentation artifact
