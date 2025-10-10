@@ -4,6 +4,9 @@
 
 Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbor](https://www.mrtrashwheel.com/)
 
+[![pipeline_ci](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml/badge.svg)](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml)
+
+
 <img width="1842" height="370" alt="diagram-export-10-9-2025-4_17_41-AM-overlay" src="https://github.com/user-attachments/assets/7a1dab3a-9baa-463b-885f-11acc5236c4e" />
 
 <img width="496" height="244" alt="image" src="https://github.com/user-attachments/assets/e00103fc-3115-4e1e-b6a2-95c37d0c97eb" />
@@ -16,7 +19,6 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
 [![Evidence](https://img.shields.io/badge/evidence-grey?style=for-the-badge&logo=evidence)](https://github.com/evidence-dev/evidence)
 
-[![pipeline_ci](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml/badge.svg)](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml)
 
 ### Data Stack
 
