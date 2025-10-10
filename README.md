@@ -16,7 +16,7 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
 [![Evidence](https://img.shields.io/badge/evidence-grey?style=for-the-badge&logo=evidence)](https://github.com/evidence-dev/evidence)
 
-
+[![pipeline_ci](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml/badge.svg)](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml)
 
 ### Data Stack
 
