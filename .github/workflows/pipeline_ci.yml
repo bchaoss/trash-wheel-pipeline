@@ -59,13 +59,8 @@ jobs:
         run: dbt run
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
-      - name: Create docs dir
-        run: |
-          mkdir -p ${{ github.workspace }}/docs/pipeline
-          mkdir -p ${{ github.workspace }}/docs/dashboard
-
       - name: Generate dbt doc
-        run: dbt docs generate --target-path ${{ github.workspace }}/docs/pipeline
+        run: dbt docs generate --target-path ${{ github.workspace }}/site/pipeline
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
       # Action2: build dashboard
@@ -88,15 +83,15 @@ jobs:
           npm run build
         working-directory: ${{ env.BI_PROJECT_DIR }}
       
-      - name: Move build to docs folder
-        run: mv ${{ env.BI_PROJECT_DIR }}/build/* ${{ github.workspace }}/docs/dashboard
+      - name: Move build to site folder
+        run: mv ${{ env.BI_PROJECT_DIR }}/build/* ${{ github.workspace }}/site/dashboard
       
 
       # Action3: Upload artifact
       - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ github.workspace }}/docs
+          path: ${{ github.workspace }}/site
         
 
   deploy-page:
@@ -113,6 +108,6 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       
-      - name: Deploy docs to GitHub Pages
+      - name: Deploy site to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
