@@ -21,11 +21,11 @@ __pycache__/
 evidence_bi/.evidence/template
 evidence_bi/.evidence/meta
 evidence_bi/.svelte-kit
+evidence_bi/.env
+evidence_bi/package-lock.json
 # evidence_bi/build
 evidence_bi/node_modules
 evidence_bi/static/data
 *.options.yaml
 .vscode/settings.json
 .env
-evidence_bi/.env
-evidence_bi/package.json
