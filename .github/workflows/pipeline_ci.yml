@@ -5,6 +5,7 @@ env:
   DBT_PROJECT_DIR: ${{ github.workspace }}/dbt_pipeline
   DBT_PROFILES_DIR: ${{ github.workspace }}/dbt_pipeline/.dbt
   BI_PROJECT_DIR: ${{ github.workspace }}/evidence_bi
+  PAGE_DEPLOY_DIR: ${{ github.workspace }}/evidence_bi/build
 
 # Controls when the workflow will run
 on:
@@ -60,7 +61,7 @@ jobs:
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
       - name: Generate dbt doc
-        run: dbt docs generate --target-path ${{ github.workspace }}/site/pipeline
+        run: dbt docs generate --target-path ${{ env.PAGE_DEPLOY_DIR }}/pipeline
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
       # Action2: build dashboard
@@ -83,15 +84,14 @@ jobs:
           npm run build
         working-directory: ${{ env.BI_PROJECT_DIR }}
       
-      - name: Move build to site folder
-        run: mv ${{ env.BI_PROJECT_DIR }}/build/* ${{ github.workspace }}/site/dashboard
+      # - name: Move build to site folder
+      #   run: mv ${{ env.BI_PROJECT_DIR }}/build/* ${{ github.workspace }}/site/dashboard
       
-
       # Action3: Upload artifact
       - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ github.workspace }}/site
+          path: ${{ env.PAGE_DEPLOY_DIR }}
         
 
   deploy-page:
