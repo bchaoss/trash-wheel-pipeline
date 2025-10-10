@@ -81,4 +81,4 @@ plugins:
     "@evidence-dev/motherduck": { }
 
 deployment:
-  basePath: /trash-wheel-analysis/evidence_bi
+  basePath: /trash-wheel-analysis/dashboard
