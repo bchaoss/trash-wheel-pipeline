@@ -1,6 +1,6 @@
 # trash-wheel-analysis
 
-**A [data pipeline](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview) & dashboard(to deploy) for analyzing trash wheel collection data.**
+**A [data pipeline](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview) & [dashboard](https://bchaoss.github.io/trash-wheel-analysis/evidence_bi/) for analyzing trash wheel collection data.**
 
 Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbor](https://www.mrtrashwheel.com/)
 
@@ -94,7 +94,7 @@ dbt build  # Run the full pipeline (ingest -> staging -> mart) and tests
 - [x] mart analysis table
 - [ ] incremental (ingest or refresh)
 - [x] github action
-- [ ] dashboard deploy
+- [x] dashboard deploy
 - [ ] analysis and generate insight (TODO)
 
 ### Reference:
