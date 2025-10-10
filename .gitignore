@@ -27,3 +27,5 @@ evidence_bi/static/data
 *.options.yaml
 .vscode/settings.json
 .env
+evidence_bi/.env
+evidence_bi/package.json

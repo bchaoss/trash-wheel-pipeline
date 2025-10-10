@@ -6,7 +6,6 @@
       "version": "3.11"
     }
   },
-  "postCreateCommand": "pip install -r requirements.txt && echo \"EVIDENCE_SOURCE__trash_wheel__token=${MOTHERDUCK_TOKEN}\" >> evidence_bi/.env",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,5 +16,12 @@
       ]
     }
   },
-  "initializeCommand": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/ && cd evidence_bi/ && npm install && npm run sources"
+  "initializeCommand": {
+    "dbt setup": "mkdir -p /root/dbt_pipeline/.dbt && cp dbt_pipeline/profiles.yml /root/dbt_pipeline/.dbt/",
+    "bi setup": "echo \"EVIDENCE_SOURCE__trash_wheel__token=${MOTHERDUCK_TOKEN}\" > evidence_bi/.env"
+  },
+  "postCreateCommand": {
+    "dbt dependencies": "pip install -r requirements.txt",
+    "bi dependencies": "cd evidence_bi/ && npm install && npm run sources"
+  }
 }
