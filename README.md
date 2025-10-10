@@ -95,6 +95,7 @@ dbt build  # Run the full pipeline (ingest -> staging -> mart) and tests
 - [ ] incremental (ingest or refresh)
 - [x] github action
 - [ ] dashboard deploy
+- [ ] analysis and generate insight (TODO)
 
 ### Reference:
 - [TidyTuesday data on 2024-03-05](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
