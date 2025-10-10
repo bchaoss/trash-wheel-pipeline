@@ -1,9 +1,10 @@
-name: dbt_ci
+name: pipeline_ci
 
 env:
   MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
   DBT_PROJECT_DIR: ${{ github.workspace }}/dbt_pipeline
   DBT_PROFILES_DIR: ${{ github.workspace }}/dbt_pipeline/.dbt
+  BI_PROJECT_DIR: ${{ github.workspace }}/evidence_bi
 
 # Controls when the workflow will run
 on:
@@ -21,7 +22,7 @@ permissions:
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  run-dbt:
+  run-pipeline:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -30,6 +31,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Action1: run dbt pipeline
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -66,13 +68,33 @@ jobs:
         run: dbt docs generate --target-path ${{ github.workspace }}/docs/pipeline
         working-directory: ${{ env.DBT_PROJECT_DIR }}
 
+      # Action2: build dashboard
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install npm
+        run: npm install
+        working-directory: ${{ env.BI_PROJECT_DIR }}
+
+      - name: Build dashboard
+        env:
+          EVIDENCE_SOURCE__trash_wheel__token: ${{ env.MOTHERDUCK_TOKEN }}
+        run: |
+          npm run sources
+          npm run build
+
+      # Action3: Upload artifact
       - name: Upload documentation artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ github.workspace }}/docs
         
+
   deploy-page:
-    needs: run-dbt
+    needs: run-pipeline
     permissions:
       pages: write      
       id-token: write   
