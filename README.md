@@ -4,8 +4,6 @@
 
 Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbor](https://www.mrtrashwheel.com/)
 
-[![pipeline_ci](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml/badge.svg)](https://github.com/bchaoss/trash-wheel-analysis/actions/workflows/pipeline_ci.yml)
-
 
 <img width="1842" height="370" alt="diagram-export-10-9-2025-4_17_41-AM-overlay" src="https://github.com/user-attachments/assets/7a1dab3a-9baa-463b-885f-11acc5236c4e" />
 
