@@ -4,13 +4,9 @@
 
 Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbor](https://www.mrtrashwheel.com/)
 
-
 <img width="1842" height="370" alt="diagram-export-10-9-2025-4_17_41-AM-overlay" src="https://github.com/user-attachments/assets/7a1dab3a-9baa-463b-885f-11acc5236c4e" />
 
 <img width="496" height="244" alt="image" src="https://github.com/user-attachments/assets/e00103fc-3115-4e1e-b6a2-95c37d0c97eb" />
-
-
-<!-- <br> -->
 
 [![DBT](https://img.shields.io/badge/DBT-orange?style=for-the-badge&logo=dbt)](https://www.getdbt.com/)
 [![DuckDB](https://img.shields.io/badge/DuckDB-yellow?style=for-the-badge&logo=duckdb)](https://duckdb.org/)
@@ -37,7 +33,7 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 │   ├── models/
 │   │   ├── ingest/
 │   │   ├── staging/
-│   │   └── mart/
+│   │   └── marts/
 │   ├── seeds/
 │   ├── dbt_project.yml
 │   └── profiles.yml
@@ -55,17 +51,48 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 └── requirements.txt
 </pre>
 
-### Docs & DAG
+
+### Data model, DAG and Document
 
 **[dbt docs](https://bchaoss.github.io/trash-wheel-analysis/pipeline/#!/overview)** : shows SQL models info and structure.
 
-<!-- <img width="2355" height="431" alt="dbt-dag" src="https://github.com/user-attachments/assets/0c0a2468-effd-4a65-97bf-c6aa5184b632" /> -->
-
 <img width="2434" height="249" alt="dbt-dag (1)" src="https://github.com/user-attachments/assets/f504ca42-e8cb-4cb3-b199-eb71af7d85c8" />
 
-<br>
+0. Seeds
+   
+   Static CSV file `trash_wheel_info`: Stores wheel names and assosiated Google Sheet IDs
+
+   Data source: Google Sheet Link (contain 4 sheets each for a trash wheel).
+   
+2. Ingest Layer
+   
+   seed: `trash_wheel_info` -> stg: `config_trash_wheel` (for downstream extraction process)
+   
+   Source google sheet by `get_csv` -> `ingest_trash_wheel` (raw, untransformed data)
+   
+3. Staging Layer (Transformation)
+   
+   `ingest_trash_wheel` ->
+   
+     -> `stg_trash_format` (renames columns, formats date fields and join wheel info)
+     
+     -> `stg_trash_unique` (creates clean and unique primary key of each dumpster by wheel)
+     
+     -> `stg_trash_type` (data type casting)
+   
+5. Marts Layer
+
+   Fact Table:
+   
+     `stg_trash_type` -> `fact_trash_collection`
+   
+   Dimension Table:
+   
+     `config_trash_wheel` -> `dim_trash_wheel`
+
 <br>
 
+<br>
 
 ###  Get start
 
@@ -75,19 +102,37 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 
 2\. Setup Environment
 
-| Option | Notes |
+Use Github Codespace setup by `.devcontainer.json`, OR in local machine: Python + Node.js
+
+| Environment | Dependencies |
 | :--- | :--- |
-| **Local Machine** | Python 3 and `pip install -r requirements.txt` | 
-| **Github Codespace** | Uses the `.devcontainer` to set up |
+| Python 3 | `pip install -r requirements.txt` | 
+| Node.js | `cd evidence_bi/ && npm install` |
 
 3\. Run the dbt Pipeline
 
 ```bash
-cd dbt_pipeline
+cd dbt_pipeline/
 
 dbt debug  # Verify connection
 
 dbt build  # Run the full pipeline (ingest -> staging -> mart) and tests
+```
+
+3\. Build the dashboard by Evidence
+
+Define motherduck connection in `sources/connection.yaml`;
+
+Edit dashboard in  `pages/index.md`;
+
+```
+cd evidence_bi/
+
+echo "EVIDENCE_SOURCE__trash_wheel__token=${MOTHERDUCK_TOKEN}" > .env
+
+npm run sources
+
+npm run build
 ```
 
 <br>
