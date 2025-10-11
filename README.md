@@ -13,6 +13,7 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 [![MotherDuck](https://img.shields.io/badge/MotherDuck-green?style=for-the-badge&logo=motherduck)](https://www.motherduck.com/)
 [![Evidence](https://img.shields.io/badge/evidence-grey?style=for-the-badge&logo=evidence)](https://github.com/evidence-dev/evidence)
 
+<br>
 
 ### Data Stack
 
@@ -24,6 +25,7 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 | [Evidence](https://github.com/evidence-dev/evidence?tab=readme-ov-file) | BI tool using SQL and Markdown |
 | [Github Action](https://docs.github.com/en/actions/get-started/understand-github-actions) | CI/CD (to run pipeline, deploy docs to [GitHub Page](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)) |
 
+<br>
 
 ### Structure
 <pre>
@@ -51,6 +53,7 @@ Data Source: [Trash Wheel: Semi-autonomous trash interceptors in Baltimore Harbo
 └── requirements.txt
 </pre>
 
+<br>
 
 ### Data model, DAG and Document
 
@@ -144,6 +147,8 @@ npm run build
 - [x] github action
 - [x] dashboard deploy
 - [ ] analysis and generate insight (TODO)
+
+<br>
 
 ### Reference:
 - [TidyTuesday data on 2024-03-05](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-03-05/readme.md)
