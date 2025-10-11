@@ -34,7 +34,7 @@ from (
     {% endfor %}
     
   from {{ ref('fact_trash_collection') }}
-  group by 1, 2, 3, 4, 5, 6
+  group by all
 ) a
 left join {{ ref('dim_trash_wheel') }} b 
   on a.wheel_id = b.wheel_id

@@ -80,7 +80,7 @@ select date as Month,
   sum(weight) as weight,
   sum(volume) as volume
 from trash_collection_monthly
-group by 1
+group by all
 order by 1 desc
 ```
 
@@ -89,7 +89,7 @@ select date as Month,
   sum(weight) as "Weight (ton)",
   sum(volume) as "Volume (cubic yard)"
 from trash_collection_monthly
-group by 1
+group by all
 order by 1 desc
 limit 6
 ```
@@ -199,7 +199,7 @@ select wheel_name,
   sum(volume) as volume
 from trash_collection_monthly
 where date >= (select month from ${latest_month} )
-group by 1
+group by all
 order by 1 desc
 ```
 
@@ -212,7 +212,7 @@ select
   , sum(weight) as weight
   -- , sum(volume) as volume
 from trash_collection_monthly
-group by 1, 2
+group by all
 order by 1, 2
 ```
 
